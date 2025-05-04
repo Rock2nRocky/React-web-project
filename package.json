@@ -1,4 +1,9 @@
 {
+  "homepage": "https://rock2nrocky.github.io/React-web-project/",
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+},
   "name": "cloth-shop",
   "version": "0.1.0",
   "private": true,
