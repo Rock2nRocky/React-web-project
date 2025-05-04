@@ -1,0 +1,154 @@
+/* Product Details Layout */
+.product-details {
+  display: flex;
+  gap: 2rem; /* Space between the image and the text */
+  align-items: flex-start; /* Align items to the top by default */
+  padding: 2rem;
+}
+
+/* Image Styling */
+.product-details .product-image {
+  width: 400px; /* Default width for desktop */
+  object-fit: cover; /* Ensure proportional scaling */
+}
+
+/* Text Content Styling */
+.product-details .product-info {
+  flex: 1; /* Allow the text section to grow */
+}
+
+/* Responsive Styling for Mobile View */
+@media (max-width: 768px) {
+  .product-details {
+      display: flex;
+      flex-direction: column; /* Stack the image and text vertically */
+      align-items: center; /* Center-align all content */
+      text-align: center; /* Center-align the text */
+      width: 100%; /* Ensure the container spans full width */
+      margin: 0 auto; /* Center the layout horizontally */
+  }
+
+  .product-details .product-image {
+      width: 100%; /* Image occupies full width */
+      max-width: 300px; /* Restrict maximum size for mobile */
+      margin-bottom: 1rem; /* Add spacing below the image */
+      display: block; /* Ensure block display for proper stacking */
+  }
+
+  .product-details .product-info {
+      text-align: center; /* Center-align text */
+      width: 100%; /* Ensure text spans the full width */
+  }
+}
+
+/* Image Gallery */
+.image-gallery img { 
+  width: 100%; /* Make gallery images responsive */
+  max-width: 400px; /* Set a maximum width */
+  border: 1px solid #ddd;
+}
+
+.thumbnail img {
+  width: 75px;
+  height: 75px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.thumbnail img.selected {
+  border: 2px solid black;
+}
+
+/* Add to Bag Button */
+.add-to-bag {
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Responsive Button Adjustments */
+@media (max-width: 768px) {
+  .add-to-bag {
+      width: 100%; /* Make the button full width on mobile */
+      max-width: 300px; /* Restrict the maximum size */
+      margin: 1rem auto; /* Center the button */
+  }
+}
+
+/* Product Grid Layout (if needed) */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Limit to 4 items per row */
+  gap: 1rem; /* Space between items */
+  padding: 2rem; /* Padding around the grid */
+}
+
+/* Responsive Adjustments for Grid */
+@media (max-width: 1024px) {
+  .products-grid {
+      grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+      grid-template-columns: 1fr; /* 1 item per row */
+  }
+}
+
+/* Product Card Styling */
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.product-card .product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  margin: 1rem 0 0.5rem;
+}
+
+.product-card .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0078d7;
+}
+
+.product-card .original-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-left: 0.5rem;
+}
+
+.product-card .discount {
+  color: green;
+  font-weight: bold;
+}
+
+/* Footer Styling */
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #333;
+  color: white;
+  position: relative;
+  width: 100%;
+}

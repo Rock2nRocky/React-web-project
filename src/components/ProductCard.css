@@ -1,0 +1,51 @@
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .product-card .product-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .product-card h3 {
+    margin: 1rem 0 0.5rem;
+  }
+  
+  .product-card .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0078d7;
+  }
+  
+  .product-card .original-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 0.5rem;
+  }
+  
+  .product-card .discount {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .product-card .color-options {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .product-card .color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  

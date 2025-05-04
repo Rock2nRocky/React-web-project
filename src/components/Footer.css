@@ -1,0 +1,10 @@
+/* Footer Styling */
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #333;
+  color: white;
+  position: relative; /* Allow it to stay relative to its parent */
+  width: 100%;
+  margin-top: auto; /* Push it to the bottom when content is short */
+}

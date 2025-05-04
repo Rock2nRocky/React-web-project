@@ -1,0 +1,175 @@
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #333; /* Navbar background color */
+  color: white; /* Navbar text color */
+}
+
+
+/* Title Styling */
+.navbar-title {
+  margin-bottom: 1rem; /* Add more spacing below the title */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  font-family: 'Arial', sans-serif;
+}
+
+/* FLY HIGH Styling */
+.title-primary {
+  font-size: 2rem; /* Larger font size for FLY HIGH */
+  font-weight: bold;
+  background: linear-gradient(to right, #ff9800, #ff5722); /* Gradient color */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient effect */
+  text-transform: uppercase; /* Capitalize text */
+}
+
+/* Men's Spot Styling */
+.title-secondary {
+  font-size: 1.2rem; /* Slightly smaller font */
+  font-style: italic; /* Italic for Men's Spot */
+  color: #ffffff; /* White color for contrast */
+}
+
+/* Navbar Menu */
+.navbar-menu {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: rgb(242, 246, 246); /* Default text color */
+  font-size: 1.1rem; /* Slightly larger text */
+  font-weight: bold;
+  padding: 0.8rem 2.2rem; /* Increased padding for button size */
+  border-radius: 8px; /* Rounded corners */
+  background: linear-gradient(to right, #ff9800, #ff5722); /* Matching gradient background */
+  border: 2px solid #a42f04; /* Larger border with orange-red color */
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  transition: all 0.4s ease; /* Smooth animations */
+}
+
+.navbar-menu a {
+  border-radius: 12px; /* Smoothly rounded corners */
+}
+
+/* 
+.navbar-menu a {
+  border-radius: 2px; /* Sharp corners */
+
+Sharper */
+
+.title-secondary {
+  font-size: 1.4rem; /* Slightly larger font */
+  font-style: italic;
+  color: #f5f5f5; /* Slightly softer white */
+}
+
+
+.navbar-menu a:hover {
+  transform: scale(1.15); /* Slightly larger enlargement */
+  box-shadow: 0 6px 15px rgba(255, 87, 34, 0.7); /* Stronger shadow effect */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+}
+
+
+.navbar-menu a.active {
+  background-color: #cc0000; /* Distinct background for active state */
+  border: 3px solid #28d9e2; /* Golden-orange border for active button */
+}
+
+/* Cart Button with Badge */
+.navbar-menu a.cart-link .cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #ffcc00; /* Bright yellow badge */
+  color: #333; /* Dark text for contrast */
+  border-radius: 50%;
+  padding: 0.3rem 0.6rem; /* Slightly larger badge size */
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mobile Menu */
+.navbar-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #333; /* Sidebar background */
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  transition: right 0.3s ease;
+}
+
+.sidebar.open {
+  right: 0;
+  display: flex;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white; /* Sidebar link text color */
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 2px solid #b30000;
+  background-color: #b30000;
+  text-align: center;
+}
+
+.sidebar a:hover {
+  background-color: #ff4d4d;
+  border-color: darkred;
+  color: black;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay.show {
+  display: block;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+}

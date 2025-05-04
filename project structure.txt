@@ -1,0 +1,52 @@
+src/
+│
+├── assets/                   # Static assets like images and styles
+│   ├── images/               # Image assets
+│   │   ├── product1.png
+│   │   ├── product2.jpg
+│   │   ├── ...
+│   └── styles/               # Global and reusable styles
+│       ├── variables.css     # CSS variables (colors, fonts, etc.)
+│       ├── mixins.css        # CSS helper classes
+│       └── global.css        # Global styling rules
+│
+├── components/               # Reusable components
+│   ├── common/               # General-purpose UI components
+│   │   ├── Button.js
+│   │   ├── Modal.js
+│   │   ├── ...
+│   ├── layout/               # Layout-specific components
+│   │   ├── Navbar.js
+│   │   ├── Footer.js
+│   │   └── Sidebar.js
+│   └── product/              # Product-specific components
+│       ├── ProductCard.js
+│       ├── ProductGrid.js
+│       ├── ProductDetails.js
+│
+├── contexts/                 # Context API files
+│   └── CartContext.js
+│
+├── hooks/                    # Custom hooks for logic reuse
+│   ├── useCart.js            # Hook to access cart-related logic
+│   └── useProductFilter.js   # Hook for product filtering
+│
+├── pages/                    # Page components for routing
+│   ├── Home.js
+│   ├── Shop.js
+│   ├── About.js
+│   ├── Contact.js
+│   └── Cart.js
+│
+├── data/                     # Static data files
+│   ├── products.js
+│   └── categories.js
+│
+├── utils/                    # Utility functions and helpers
+│   ├── formatCurrency.js     # Utility for currency formatting
+│   ├── api.js                # Utility for API requests
+│   └── constants.js          # App-wide constants
+│
+├── App.js                    # Main application component
+├── index.js                  # React DOM entry point
+└── index.css                 # Base styling for the app

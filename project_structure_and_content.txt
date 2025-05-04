@@ -1,0 +1,2473 @@
+public Folder
+    favicon.ico
+        [Content Start]
+        [Error Reading File: 'utf-8' codec can't decode byte 0xe3 in position 14: invalid continuation byte]
+
+    index.html
+        [Content Start]
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
+
+        [Content End]
+
+    logo192.png
+        [Content Start]
+        [Error Reading File: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte]
+
+    logo512.png
+        [Content Start]
+        [Error Reading File: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte]
+
+    manifest.json
+        [Content Start]
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+
+        [Content End]
+
+    robots.txt
+        [Content Start]
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:
+
+        [Content End]
+
+
+src Folder
+    App.css
+        [Content Start]
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar-toggle {
+  display: none; /* Hidden by default */
+}
+
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none; /* Hide menu on smaller screens */
+  }
+
+  .navbar-toggle {
+    display: block; /* Show toggle button */
+  }
+}
+
+/* Product List */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.product-card {
+  flex: 1 1 calc(50% - 20px); /* Two per row */
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.product-card img {
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 600px) {
+  .product-card {
+    flex: 1 1 100%; /* Full width on small screens */
+  }
+}
+
+/* Cart Table */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+  .cart-table {
+    display: block;
+  }
+
+  .cart-row {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+
+  .cart-row > div {
+    flex: 1 1 100%;
+    padding: 10px;
+  }
+}
+
+        [Content End]
+
+    App.js
+        [Content Start]
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Shop from './pages/Shop';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Cart from './pages/Cart';
+import ProductDetails from './pages/ProductDetails';
+import products from './data/products';
+
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/product/:id" element={<ProductDetails products={products} />} />
+        </Routes>
+      </main>
+      <Footer />
+    </Router>
+  );
+}
+
+export default App;
+
+        [Content End]
+
+    App.test.js
+        [Content Start]
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+        [Content End]
+
+    data.js
+        [Content Start]
+const products = [
+    {
+      id: 1,
+      name: 'T-Shirt',
+      price: 19.99,
+      image: 'https://via.placeholder.com/150',
+    },
+    {
+      id: 2,
+      name: 'Jeans',
+      price: 49.99,
+      image: 'https://via.placeholder.com/150',
+    },
+    {
+      id: 3,
+      name: 'Jacket',
+      price: 89.99,
+      image: 'https://via.placeholder.com/150',
+    },
+    {
+      id: 4,
+      name: 'Shoes',
+      price: 69.99,
+      image: 'https://via.placeholder.com/150',
+    },
+  ];
+  
+  export default products;
+  
+        [Content End]
+
+    index.css
+        [Content Start]
+/* Body and Root Layout */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #eaeaea; /* Light gray for the entire page */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure body takes the full viewport height */
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Product Grid Layout */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+  gap: 1rem; /* Space between items */
+  padding: 2rem; /* Padding around the grid */
+}
+
+/* Responsive Adjustments for Grid */
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr; /* 1 item per row */
+  }
+}
+
+/* Product Card Styling */
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.product-card .product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  margin: 1rem 0 0.5rem;
+}
+
+.product-card .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0078d7;
+}
+
+.product-card .original-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-left: 0.5rem;
+}
+
+.product-card .discount {
+  color: green;
+  font-weight: bold;
+}
+
+/* Footer Styling */
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #333;
+  color: white;
+  position: relative;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Contact Section Background */
+.contact-section {
+  padding: 50px 0;
+  background-color: #f8f8f8; /* Light background for the contact section */
+}
+
+/* Contact Container Styles */
+.contact-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff; /* White background for better readability */
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map-container {
+  margin: 20px auto;
+  max-width: 800px; /* Limit the maximum width of the container */
+  height: 450px; /* Set a fixed height for the container */
+  border: 2px solid #ddd; /* Optional: border for aesthetics */
+  border-radius: 10px; /* Optional: rounded corners */
+  overflow: hidden; /* Ensure the iframe does not exceed the container */
+  background-color: #f4f4f4; /* Background for empty space */
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Center the iframe horizontally */
+  align-items: center; /* Center the iframe vertically */
+}
+
+.map-container iframe {
+  width: 100%; /* Force the iframe to fill the container's width */
+  height: 100%; /* Force the iframe to fill the container's height */
+  border: none; /* Remove default iframe borders */
+}
+
+/* Typography */
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  color: #333;
+  margin-top: 0; /* Ensure no extra spacing at the top */
+}
+
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Links Styling */
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Page Styling */
+.contact-container {
+  background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.contact-header {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #007bff; /* Highlight */
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.contact-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1.5rem; /* Add spacing between items */
+  margin-bottom: 2rem;
+}
+
+.contact-item {
+  flex: 1 1 300px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1.5rem;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.contact-item:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.contact-item .icon {
+  font-size: 2rem;
+  color: #007bff;
+  margin-right: 1rem;
+}
+
+.contact-item strong {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.contact-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  margin: 2rem 0;
+  height: 2px;
+  background: #ddd;
+  border: none;
+}
+
+.map-container {
+  margin: 2rem auto;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 900px;
+  transition: transform 0.3s ease;
+}
+
+.map-container:hover {
+  transform: scale(1.02); /* Slight zoom effect */
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .contact-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-item {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+
+
+/* Styling for About Page */
+.about-container {
+  padding: 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: #f9f9f9; /* Subtle background color */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+}
+
+.about-container h2 {
+  font-size: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.about-container h3 {
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
+  color: #444;
+  margin-top: 1.5rem;
+}
+
+.about-container p {
+  font-size: 1.2rem;
+  font-family: 'Roboto', sans-serif;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.about-container ul {
+  text-align: left;
+  list-style-type: none; /* Remove default bullet points */
+  line-height: 1.8;
+  margin: 1rem 2rem;
+  padding: 0;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.about-container ul li {
+  display: flex; /* Align icons and text in one line */
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.about-container ul li .icon {
+  color: #3498db; /* Icon color */
+  font-size: 1.5rem;
+  margin-right: 0.8rem;
+}
+
+.about-container p strong {
+  color: #007BFF; /* Highlight key points with a brand color */
+  font-weight: bold;
+}
+
+/* Responsive Design for About Page */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 1rem;
+  }
+
+  .about-container h2 {
+    font-size: 2rem;
+  }
+
+  .about-container h3 {
+    font-size: 1.5rem;
+  }
+
+  .about-container p,
+  .about-container ul {
+    font-size: 1rem;
+  }
+
+  .about-container ul li .icon {
+    font-size: 1.3rem;
+  }
+}
+
+        [Content End]
+
+    index.js
+        [Content Start]
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css'; // Import global styles
+import App from './App'; // Import main App component
+import CartProvider from './contexts/CartContext'; // Import Cart Context Provider
+
+
+// Ensure proper structure for footer to stay at the bottom
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    {/* Wrap the entire application with the CartProvider */}
+    <CartProvider>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <App />
+      </div>
+    </CartProvider>
+  </React.StrictMode>
+);
+
+        [Content End]
+
+    logo.svg
+        [Content Start]
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3"><g fill="#61DAFB"><path d="M666.3 296.5c0-32.5-40.7-63.3-103.1-82.4 14.4-63.6 8-114.2-20.2-130.4-6.5-3.8-14.1-5.6-22.4-5.6v22.3c4.6 0 8.3.9 11.4 2.6 13.6 7.8 19.5 37.5 14.9 75.7-1.1 9.4-2.9 19.3-5.1 29.4-19.6-4.8-41-8.5-63.5-10.9-13.5-18.5-27.5-35.3-41.6-50 32.6-30.3 63.2-46.9 84-46.9V78c-27.5 0-63.5 19.6-99.9 53.6-36.4-33.8-72.4-53.2-99.9-53.2v22.3c20.7 0 51.4 16.5 84 46.6-14 14.7-28 31.4-41.3 49.9-22.6 2.4-44 6.1-63.6 11-2.3-10-4-19.7-5.2-29-4.7-38.2 1.1-67.9 14.6-75.8 3-1.8 6.9-2.6 11.5-2.6V78.5c-8.4 0-16 1.8-22.6 5.6-28.1 16.2-34.4 66.7-19.9 130.1-62.2 19.2-102.7 49.9-102.7 82.3 0 32.5 40.7 63.3 103.1 82.4-14.4 63.6-8 114.2 20.2 130.4 6.5 3.8 14.1 5.6 22.5 5.6 27.5 0 63.5-19.6 99.9-53.6 36.4 33.8 72.4 53.2 99.9 53.2 8.4 0 16-1.8 22.6-5.6 28.1-16.2 34.4-66.7 19.9-130.1 62-19.1 102.5-49.9 102.5-82.3zm-130.2-66.7c-3.7 12.9-8.3 26.2-13.5 39.5-4.1-8-8.4-16-13.1-24-4.6-8-9.5-15.8-14.4-23.4 14.2 2.1 27.9 4.7 41 7.9zm-45.8 106.5c-7.8 13.5-15.8 26.3-24.1 38.2-14.9 1.3-30 2-45.2 2-15.1 0-30.2-.7-45-1.9-8.3-11.9-16.4-24.6-24.2-38-7.6-13.1-14.5-26.4-20.8-39.8 6.2-13.4 13.2-26.8 20.7-39.9 7.8-13.5 15.8-26.3 24.1-38.2 14.9-1.3 30-2 45.2-2 15.1 0 30.2.7 45 1.9 8.3 11.9 16.4 24.6 24.2 38 7.6 13.1 14.5 26.4 20.8 39.8-6.3 13.4-13.2 26.8-20.7 39.9zm32.3-13c5.4 13.4 10 26.8 13.8 39.8-13.1 3.2-26.9 5.9-41.2 8 4.9-7.7 9.8-15.6 14.4-23.7 4.6-8 8.9-16.1 13-24.1zM421.2 430c-9.3-9.6-18.6-20.3-27.8-32 9 .4 18.2.7 27.5.7 9.4 0 18.7-.2 27.8-.7-9 11.7-18.3 22.4-27.5 32zm-74.4-58.9c-14.2-2.1-27.9-4.7-41-7.9 3.7-12.9 8.3-26.2 13.5-39.5 4.1 8 8.4 16 13.1 24 4.7 8 9.5 15.8 14.4 23.4zM420.7 163c9.3 9.6 18.6 20.3 27.8 32-9-.4-18.2-.7-27.5-.7-9.4 0-18.7.2-27.8.7 9-11.7 18.3-22.4 27.5-32zm-74 58.9c-4.9 7.7-9.8 15.6-14.4 23.7-4.6 8-8.9 16-13 24-5.4-13.4-10-26.8-13.8-39.8 13.1-3.1 26.9-5.8 41.2-7.9zm-90.5 125.2c-35.4-15.1-58.3-34.9-58.3-50.6 0-15.7 22.9-35.6 58.3-50.6 8.6-3.7 18-7 27.7-10.1 5.7 19.6 13.2 40 22.5 60.9-9.2 20.8-16.6 41.1-22.2 60.6-9.9-3.1-19.3-6.5-28-10.2zM310 490c-13.6-7.8-19.5-37.5-14.9-75.7 1.1-9.4 2.9-19.3 5.1-29.4 19.6 4.8 41 8.5 63.5 10.9 13.5 18.5 27.5 35.3 41.6 50-32.6 30.3-63.2 46.9-84 46.9-4.5-.1-8.3-1-11.3-2.7zm237.2-76.2c4.7 38.2-1.1 67.9-14.6 75.8-3 1.8-6.9 2.6-11.5 2.6-20.7 0-51.4-16.5-84-46.6 14-14.7 28-31.4 41.3-49.9 22.6-2.4 44-6.1 63.6-11 2.3 10.1 4.1 19.8 5.2 29.1zm38.5-66.7c-8.6 3.7-18 7-27.7 10.1-5.7-19.6-13.2-40-22.5-60.9 9.2-20.8 16.6-41.1 22.2-60.6 9.9 3.1 19.3 6.5 28.1 10.2 35.4 15.1 58.3 34.9 58.3 50.6-.1 15.7-23 35.6-58.4 50.6zM320.8 78.4z"/><circle cx="420.9" cy="296.5" r="45.7"/><path d="M520.5 78.1z"/></g></svg>
+        [Content End]
+
+    reportWebVitals.js
+        [Content Start]
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+
+        [Content End]
+
+    setupTests.js
+        [Content Start]
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+
+        [Content End]
+
+
+src\assets Folder
+
+src\assets\images Folder
+    banner-image.jpg
+        [Content Start]
+        [Error Reading File: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte]
+
+    default.png
+        [Content Start]
+        [Error Reading File: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte]
+
+    product1.png
+        [Content Start]
+        [Error Reading File: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte]
+
+    product2.jpg
+        [Content Start]
+        [Error Reading File: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte]
+
+    product3.jpg
+        [Content Start]
+        [Error Reading File: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte]
+
+
+src\components Folder
+    Footer.css
+        [Content Start]
+/* Footer Styling */
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #333;
+  color: white;
+  position: relative; /* Allow it to stay relative to its parent */
+  width: 100%;
+  margin-top: auto; /* Push it to the bottom when content is short */
+}
+
+        [Content End]
+
+    Footer.js
+        [Content Start]
+import React from 'react';
+
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <p>© 2024 Cloth Shop. All rights reserved.</p>
+    </footer>
+  );
+};
+
+export default Footer;
+
+        [Content End]
+
+    HeroBanner.css
+        [Content Start]
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full-screen height */
+  background: url('../assets/images/banner-image.jpg') no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  position: relative;
+  color: white;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out; /* Fade-in effect */
+  margin-top: -60px; /* Adjust to move the entire content up or down */
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  line-height: 1.5; /* Increased line-height for readability */
+}
+
+.hero-subtitle .highlight {
+  color: #ffcc00; /* Highlighted text color */
+  font-weight: bold;
+}
+
+.timer {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 10px; /* Adjust spacing between subtitle and timer */
+  color: #ffcc00;
+}
+
+/* Shop Now Button */
+.hero-button {
+  padding: 0.8rem 2rem; /* Button padding */
+  font-size: 1.2rem; /* Font size of button text */
+  font-weight: bold; /* Bold text */
+  color: white; /* Text color */
+  background: linear-gradient(to right, #ff9800, #ff5722); /* Background gradient */
+  border: none; /* No border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  text-decoration: none; /* Remove underline from links */
+  transition: all 0.3s ease; /* Smooth transition effect */
+  margin-top: 18px; /* Space between the button and the timer or other content */
+  position: relative; /* Position relative for alignment adjustments */
+  left: 50; /* Adjust horizontal position (e.g., `left: 20px` to move right) */
+  top: 0; /* Adjust vertical position (e.g., `top: -10px` to move up) */
+  display: inline-block; /* Ensure it's treated as an inline-block for alignment */
+}
+
+/* Button hover effect */
+.hero-button:hover {
+  background: linear-gradient(to right, #ffa726, #ff7043); /* Lighter gradient on hover */
+  transform: scale(1.1); /* Slight scaling effect */
+  box-shadow: 0 4px 15px rgba(255, 112, 67, 0.7); /* Add glow effect */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem; /* Adjust for smaller screens */
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .timer {
+    font-size: 1.2rem;
+  }
+}
+
+        [Content End]
+
+    HeroBanner.js
+        [Content Start]
+import React, { useEffect, useState } from 'react';
+import './HeroBanner.css';
+
+const HeroBanner = () => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    // Define the desired end date (in local time)
+    const endDate = new Date("2025-01-09T23:59:59").getTime(); // Replace with desired end date
+
+    const updateTimer = () => {
+      const now = new Date().getTime(); // Get current local time
+      const difference = endDate - now;
+
+      // If time is up, stop the timer
+      if (difference <= 0) {
+        clearInterval(timer);
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+
+      // Calculate remaining time
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)); // Correct modulus
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000); // Correct modulus
+
+      setTimeLeft({ days, hours, minutes, seconds });
+    };
+
+    const timer = setInterval(updateTimer, 1000);
+    updateTimer(); // Initialize the state immediately
+
+    return () => clearInterval(timer); // Cleanup interval on unmount
+  }, []);
+
+  return (
+    <div className="hero-section">
+      <div className="hero-content">
+        <h1 className="hero-title">Winter Collection Sale</h1>
+        <p className="hero-subtitle">
+          Get up to <span className="highlight">50% Off</span> on all styles. Limited time only!
+        </p>
+        <div className="timer">
+          {timeLeft.days} Days {timeLeft.hours} Hours {timeLeft.minutes} Minutes {timeLeft.seconds} Seconds
+        </div>
+        <a href="/shop" className="hero-button">Shop Now</a>
+      </div>
+    </div>
+  );
+};
+
+export default HeroBanner;
+
+        [Content End]
+
+    HeroSection.css
+        [Content Start]
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background-image: url('https://via.placeholder.com/1200x400');
+    background-size: cover;
+    color: white;
+    text-align: center;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+  }
+  
+  .hero-section p {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .hero-section button {
+    padding: 0.75rem 1.5rem;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+        [Content End]
+
+    HeroSection.js
+        [Content Start]
+import React from 'react';
+import './HeroSection.css';
+
+const HeroSection = () => {
+  return (
+    <div className="hero-section">
+      <h1>Discover Your Style</h1>
+      <p>Shop the latest trends and elevate your wardrobe.</p>
+      <button>Shop Now</button>
+    </div>
+  );
+};
+
+export default HeroSection;
+
+        [Content End]
+
+    Navbar.css
+        [Content Start]
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #333; /* Navbar background color */
+  color: white; /* Navbar text color */
+}
+
+
+/* Title Styling */
+.navbar-title {
+  margin-bottom: 1rem; /* Add more spacing below the title */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  font-family: 'Arial', sans-serif;
+}
+
+/* FLY HIGH Styling */
+.title-primary {
+  font-size: 2rem; /* Larger font size for FLY HIGH */
+  font-weight: bold;
+  background: linear-gradient(to right, #ff9800, #ff5722); /* Gradient color */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Gradient effect */
+  text-transform: uppercase; /* Capitalize text */
+}
+
+/* Men's Spot Styling */
+.title-secondary {
+  font-size: 1.2rem; /* Slightly smaller font */
+  font-style: italic; /* Italic for Men's Spot */
+  color: #ffffff; /* White color for contrast */
+}
+
+/* Navbar Menu */
+.navbar-menu {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: rgb(242, 246, 246); /* Default text color */
+  font-size: 1.1rem; /* Slightly larger text */
+  font-weight: bold;
+  padding: 0.8rem 2.2rem; /* Increased padding for button size */
+  border-radius: 8px; /* Rounded corners */
+  background: linear-gradient(to right, #ff9800, #ff5722); /* Matching gradient background */
+  border: 2px solid #a42f04; /* Larger border with orange-red color */
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  transition: all 0.4s ease; /* Smooth animations */
+}
+
+.navbar-menu a {
+  border-radius: 12px; /* Smoothly rounded corners */
+}
+
+/* 
+.navbar-menu a {
+  border-radius: 2px; /* Sharp corners */
+
+Sharper */
+
+.title-secondary {
+  font-size: 1.4rem; /* Slightly larger font */
+  font-style: italic;
+  color: #f5f5f5; /* Slightly softer white */
+}
+
+
+.navbar-menu a:hover {
+  transform: scale(1.15); /* Slightly larger enlargement */
+  box-shadow: 0 6px 15px rgba(255, 87, 34, 0.7); /* Stronger shadow effect */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+}
+
+
+.navbar-menu a.active {
+  background-color: #cc0000; /* Distinct background for active state */
+  border: 3px solid #28d9e2; /* Golden-orange border for active button */
+}
+
+/* Cart Button with Badge */
+.navbar-menu a.cart-link .cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #ffcc00; /* Bright yellow badge */
+  color: #333; /* Dark text for contrast */
+  border-radius: 50%;
+  padding: 0.3rem 0.6rem; /* Slightly larger badge size */
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mobile Menu */
+.navbar-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100%;
+  background-color: #333; /* Sidebar background */
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  transition: right 0.3s ease;
+}
+
+.sidebar.open {
+  right: 0;
+  display: flex;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white; /* Sidebar link text color */
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 2px solid #b30000;
+  background-color: #b30000;
+  text-align: center;
+}
+
+.sidebar a:hover {
+  background-color: #ff4d4d;
+  border-color: darkred;
+  color: black;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay.show {
+  display: block;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar-menu {
+    display: none;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+}
+
+        [Content End]
+
+    Navbar.js
+        [Content Start]
+import React, { useState, useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { CartContext } from '../contexts/CartContext'; // Import Cart Context
+import './Navbar.css';
+
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const { getTotalItems } = useContext(CartContext); // Access total items in the cart
+  const totalItems = getTotalItems(); // Calculate the total count
+
+  return (
+    <nav className="navbar">
+      {/* Logo with Title */}
+      <h1 className="navbar-title">
+        <span className="title-primary">FLY HIGH</span>
+        <span className="title-secondary">Men's Spot</span>
+      </h1>
+
+      {/* Desktop Menu */}
+      <div className="navbar-menu">
+        <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
+          Home
+        </Link>
+        <Link to="/shop" className={location.pathname === '/shop' ? 'active' : ''}>
+          Shop
+        </Link>
+        <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>
+          About
+        </Link>
+        <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
+          Contact
+        </Link>
+        <Link to="/cart" className={`cart-link ${location.pathname === '/cart' ? 'active' : ''}`}>
+          Cart
+          {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
+        </Link>
+      </div>
+
+      {/* Mobile Hamburger Menu */}
+      <button
+        className="navbar-toggle"
+        aria-label="Toggle navigation menu"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        ☰
+      </button>
+
+      {/* Sidebar for Mobile */}
+      <div className={`sidebar ${menuOpen ? 'open' : ''}`}>
+        <Link to="/" onClick={() => setMenuOpen(false)}>
+          Home
+        </Link>
+        <Link to="/shop" onClick={() => setMenuOpen(false)}>
+          Shop
+        </Link>
+        <Link to="/about" onClick={() => setMenuOpen(false)}>
+          About
+        </Link>
+        <Link to="/contact" onClick={() => setMenuOpen(false)}>
+          Contact
+        </Link>
+        <Link to="/cart" onClick={() => setMenuOpen(false)}>
+          Cart
+        </Link>
+      </div>
+
+      {/* Overlay */}
+      <div
+        className={`overlay ${menuOpen ? 'show' : ''}`}
+        onClick={() => setMenuOpen(false)}
+      ></div>
+    </nav>
+  );
+};
+
+export default Navbar;
+
+        [Content End]
+
+    ProductCard.css
+        [Content Start]
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .product-card .product-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .product-card h3 {
+    margin: 1rem 0 0.5rem;
+  }
+  
+  .product-card .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0078d7;
+  }
+  
+  .product-card .original-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 0.5rem;
+  }
+  
+  .product-card .discount {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .product-card .color-options {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .product-card .color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+        [Content End]
+
+    ProductCard.js
+        [Content Start]
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './ProductCard.css';
+
+const ProductCard = ({ product }) => {
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]); // Default color
+
+  return (
+    <div className="product-card">
+      <Link
+        to={`/product/${product.id}?color=${selectedColor}`} // Pass selected color as query parameter
+        style={{ textDecoration: 'none', color: 'inherit' }}
+      >
+        {/* Product Image */}
+        <img
+          src={product.image[selectedColor]}
+          alt={product.name}
+          className="product-image"
+        />
+
+        {/* Product Name */}
+        <h3>{product.name}</h3>
+
+        {/* Price and Offer */}
+        <p>
+          <span className="price">
+            {new Intl.NumberFormat('en-IN', {
+              style: 'currency',
+              currency: 'INR',
+            }).format(product.offerPrice)}
+          </span>
+          <span className="original-price">
+            {new Intl.NumberFormat('en-IN', {
+              style: 'currency',
+              currency: 'INR',
+            }).format(product.price)}
+          </span>
+        </p>
+        <p className="discount">
+          {Math.round(((product.price - product.offerPrice) / product.price) * 100)}% OFF
+        </p>
+      </Link>
+
+      {/* Color Selection */}
+      <div className="color-options">
+        {product.colors.map((color) => (
+          <span
+            key={color}
+            className={`color-circle ${color}`}
+            style={{
+              backgroundColor: color,
+              border: color === selectedColor ? '2px solid #000' : '1px solid #ddd',
+              cursor: 'pointer',
+            }}
+            onClick={(e) => {
+              e.preventDefault(); // Prevent `Link` click when selecting color
+              setSelectedColor(color);
+            }}
+          ></span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ProductCard;
+
+        [Content End]
+
+    ProductList.js
+        [Content Start]
+import React from 'react';
+import { Link } from 'react-router-dom';
+import products from '../data/products';
+
+const ProductList = () => {
+  return (
+    <div className="product-list">
+      {products.map((product) => (
+        <div key={product.id} className="product-card">
+          <Link to={`/product/${product.id}`}>
+            <img src={product.image.black} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>Price: ₹{product.offerPrice}</p>
+          </Link>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default ProductList;
+
+        [Content End]
+
+
+src\contexts Folder
+    CartContext.js
+        [Content Start]
+import React, { createContext, useState, useEffect } from 'react';
+
+export const CartContext = createContext();
+
+const CartProvider = ({ children }) => {
+  const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem('cart'); // Load from localStorage
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
+  }, [cart]);
+
+  const addToCart = (item) => {
+    const existingItem = cart.find(
+      (cartItem) =>
+        cartItem.id === item.id &&
+        cartItem.color === item.color &&
+        cartItem.size === item.size
+    );
+
+    if (existingItem) {
+      setCart(
+        cart.map((cartItem) =>
+          cartItem.id === item.id &&
+          cartItem.color === item.color &&
+          cartItem.size === item.size
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        )
+      );
+    } else {
+      setCart([...cart, { ...item, quantity: 1 }]);
+    }
+  };
+
+  const updateCart = (id, color, size, quantityChange) => {
+    setCart(
+      cart
+        .map((cartItem) =>
+          cartItem.id === id && cartItem.color === color && cartItem.size === size
+            ? { ...cartItem, quantity: cartItem.quantity + quantityChange }
+            : cartItem
+        )
+        .filter((cartItem) => cartItem.quantity > 0)
+    );
+  };
+
+  const removeItemFromCart = (id, color, size) => {
+    setCart(
+      cart.filter(
+        (cartItem) =>
+          !(cartItem.id === id && cartItem.color === color && cartItem.size === size)
+      )
+    );
+  };
+
+  const getTotalItems = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        updateCart,
+        removeItemFromCart, // Provide removeItemFromCart to the context
+        getTotalItems,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+};
+
+export default CartProvider;
+
+        [Content End]
+
+
+src\data Folder
+    products.js
+        [Content Start]
+const products = [
+  {
+    id: 1,
+    name: 'Red Dress',
+    price: 2499,
+    offerPrice: 1999,
+    image: {
+      black: require('../assets/images/product1.png'),
+      gray: require('../assets/images/product2.jpg'),
+      white: require('../assets/images/product3.jpg'),
+    },
+    colors: ['black', 'gray', 'white'],
+    description: 'A stunning red dress, available in multiple colors, perfect for any occasion.',
+    productLink: '/product/1', // Added product link
+  },
+  {
+    id: 2,
+    name: 'Blue Shirt',
+    price: 1499,
+    offerPrice: 1199,
+    image: {
+      black: require('../assets/images/product1.png'),
+      gray: require('../assets/images/product2.jpg'),
+      white: require('../assets/images/product3.jpg'),
+    },
+    colors: ['black', 'gray', 'white'],
+    description: 'A sleek blue shirt, designed for both casual and formal wear.',
+    productLink: '/product/2', // Added product link
+  },
+  {
+    id: 3,
+    name: 'Black Shoes',
+    price: 3999,
+    offerPrice: 2999,
+    image: {
+      black: require('../assets/images/product1.png'),
+      gray: require('../assets/images/product2.jpg'),
+      white: require('../assets/images/product3.jpg'),
+    },
+    colors: ['black', 'gray', 'white'],
+    description: 'High-quality shoes, combining comfort and style in every step.',
+    productLink: '/product/3', // Added product link
+  },
+  {
+    id: 4,
+    name: 'Green T-Shirt',
+    price: 799,
+    offerPrice: 599,
+    image: {
+      black: require('../assets/images/product1.png'),
+      gray: require('../assets/images/product2.jpg'),
+      white: require('../assets/images/product3.jpg'),
+    },
+    colors: ['black', 'gray', 'white'],
+    description: 'A casual t-shirt made from breathable fabric, perfect for everyday use.',
+    productLink: '/product/4', // Added product link
+  },
+  {
+    id: 5,
+    name: 'Brown Leather Jacket',
+    price: 4999,
+    offerPrice: 3999,
+    image: {
+      black: require('../assets/images/product1.png'),
+      gray: require('../assets/images/product2.jpg'),
+      white: require('../assets/images/product3.jpg'),
+    },
+    colors: ['black', 'gray', 'white'],
+    description: 'A trendy leather jacket, crafted from durable materials for a bold look.',
+    productLink: '/product/5', // Added product link
+  },
+  {
+    id: 6,
+    name: 'White Sneakers',
+    price: 2999,
+    offerPrice: 2499,
+    image: {
+      black: require('../assets/images/product1.png'),
+      gray: require('../assets/images/product2.jpg'),
+      white: require('../assets/images/product3.jpg'),
+    },
+    colors: ['black', 'gray', 'white'],
+    description: 'Lightweight sneakers, perfect for sports, casual outings, or daily wear.',
+    productLink: '/product/6', // Added product link
+  },
+  {
+    id: 7,
+    name: 'Blue Denim Jeans',
+    price: 1999,
+    offerPrice: 1599,
+    image: {
+      black: require('../assets/images/product1.png'),
+      gray: require('../assets/images/product2.jpg'),
+      white: require('../assets/images/product3.jpg'),
+    },
+    colors: ['black', 'gray', 'white'],
+    description: 'Premium denim jeans with a slim fit, designed for style and comfort.',
+    productLink: '/product/7', // Added product link
+  },
+  {
+    id: 8,
+    name: 'Red Hoodie',
+    price: 2499,
+    offerPrice: 1999,
+    image: {
+      black: require('../assets/images/product1.png'),
+      gray: require('../assets/images/product2.jpg'),
+      white: require('../assets/images/product3.jpg'),
+    },
+    colors: ['black', 'gray', 'white'],
+    description: 'A cozy hoodie that keeps you warm while maintaining a stylish look.',
+    productLink: '/product/8', // Added product link
+  },
+  {
+    id: 9,
+    name: 'Black Formal Pants',
+    price: 1799,
+    offerPrice: 1499,
+    image: {
+      black: require('../assets/images/product1.png'),
+      gray: require('../assets/images/product2.jpg'),
+      white: require('../assets/images/product3.jpg'),
+    },
+    colors: ['black', 'gray', 'white'],
+    description: 'Classic formal pants, tailored for a perfect fit, ideal for office wear.',
+    productLink: '/product/9', // Added product link
+  },
+];
+
+export default products;
+
+        [Content End]
+
+
+src\pages Folder
+    About.js
+        [Content Start]
+import React from 'react';
+import { FaTshirt, FaSuitcase, FaShoePrints, FaTags, FaCheckCircle } from 'react-icons/fa'; // Import icons
+
+const About = () => {
+  return (
+    <div className="about-container">
+      <h2>About Fly High - Men's Spot</h2>
+      <p>
+        Welcome to <strong>Fly High - Men's Spot</strong>, your one-stop destination for the latest trends in men’s fashion.
+        We offer stylish, high-quality, and affordable clothing designed to suit every man’s wardrobe needs.
+      </p>
+
+      <h3>What We Offer</h3>
+      <ul className="offer-list">
+        <li>
+          <FaTshirt className="icon" /> <strong>Casual Wear:</strong> T-shirts, polos, and hoodies for a relaxed vibe.
+        </li>
+        <li>
+          <FaSuitcase className="icon" /> <strong>Formal Wear:</strong> Shirts, trousers, and blazers for work or special events.
+        </li>
+        <li>
+          <FaTags className="icon" /> <strong>Ethnic Wear:</strong> Traditional kurtas and more for cultural celebrations.
+        </li>
+        <li>
+          <FaShoePrints className="icon" /> <strong>Footwear & Accessories:</strong> Everything to complete your look.
+        </li>
+      </ul>
+
+      <h3>Why Choose Us?</h3>
+      <ul className="why-choose-list">
+        <li>
+          <FaCheckCircle className="icon" /> Trendy collections crafted for comfort and style.
+        </li>
+        <li>
+          <FaCheckCircle className="icon" /> High-quality products at affordable prices.
+        </li>
+        <li>
+          <FaCheckCircle className="icon" /> Exceptional customer service to ensure your satisfaction.
+        </li>
+      </ul>
+
+      <p>
+        Discover your perfect look with <strong>Fly High - Men's Spot</strong>—where fashion meets individuality.
+      </p>
+    </div>
+  );
+};
+
+export default About;
+
+        [Content End]
+
+    Cart.js
+        [Content Start]
+import React, { useContext, useState } from 'react';
+import { CartContext } from '../contexts/CartContext';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import defaultImage from '../assets/images/default.png';
+
+const Cart = () => {
+  const { cart, removeItemFromCart } = useContext(CartContext); // Removed updateCart
+  const navigate = useNavigate();
+
+  const [userDetails, setUserDetails] = useState({
+    name: '',
+    mobile: '',
+    address: '',
+    email: '',
+  });
+
+  const [showModal, setShowModal] = useState(false);
+
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => total + item.offerPrice * item.quantity, 0);
+  };
+
+  const handleInputChange = (e) => {
+    setUserDetails({
+      ...userDetails,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSendOrder = () => {
+    if (!userDetails.name || !userDetails.mobile || !userDetails.address || !userDetails.email) {
+      toast.error('Please fill in all user details.', {
+        position: 'top-center',
+        autoClose: 3000,
+      });
+      return;
+    }
+
+    const orderDetails = cart
+      .map(
+        (item) =>
+          `Product: ${item.name}\nColor: ${item.color}\nSize: ${item.size}\nPrice: ₹${item.offerPrice}\nQuantity: ${item.quantity}\n\n`
+      )
+      .join('');
+    const total = `Total: ₹${calculateTotal()}`;
+
+    const message = `
+User Details:
+Name: ${userDetails.name}
+Mobile: ${userDetails.mobile}
+Address: ${userDetails.address}
+Email: ${userDetails.email}
+
+Order Details:
+${orderDetails}${total}`;
+
+    const telegramBotToken = '7601733170:AAF4HIKNlHcAw_BYE8X75owZ-dF67gNluwI';
+    const chatId = 5612838388;
+    const telegramAPI = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+
+    fetch(telegramAPI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.ok) {
+          toast.success('Order sent successfully!', {
+            position: 'top-center',
+            autoClose: 3000,
+          });
+          setShowModal(false);
+        } else {
+          toast.error(`Failed to send order: ${data.description}`, {
+            position: 'top-center',
+            autoClose: 3000,
+          });
+        }
+      })
+      .catch((error) => {
+        toast.error('Error sending order. Please check your internet connection.', {
+          position: 'top-center',
+          autoClose: 3000,
+        });
+        console.error(error);
+      });
+  };
+
+  const handleDeleteItem = (id, color, size) => {
+    removeItemFromCart(id, color, size);
+    toast.info('Item removed from cart.', {
+      position: 'top-center',
+      autoClose: 3000,
+    });
+  };
+
+  if (cart.length === 0) {
+    return <h2 style={{ textAlign: 'center', marginTop: '2rem' }}>Your cart is empty</h2>;
+  }
+
+  return (
+    <div style={{ padding: '2rem' }}>
+      <ToastContainer />
+      <h1>Your Cart</h1>
+      <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '2rem' }}>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cart.map((item, index) => {
+            const imageSrc = item.image?.[item.color] || defaultImage;
+
+            return (
+              <tr key={index} style={{ textAlign: 'center', borderBottom: '1px solid #ddd' }}>
+                <td>
+                  <img
+                    src={imageSrc}
+                    alt={item.name || 'Product Image'}
+                    style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+                  />
+                </td>
+                <td>{item.name}</td>
+                <td>{item.color}</td>
+                <td>{item.size}</td>
+                <td>₹{item.offerPrice}</td>
+                <td>{item.quantity}</td>
+                <td>₹{item.offerPrice * item.quantity}</td>
+                <td>
+                  <button
+                    onClick={() => handleDeleteItem(item.id, item.color, item.size)}
+                    style={{
+                      backgroundColor: 'red',
+                      color: 'white',
+                      border: 'none',
+                      padding: '0.5rem 1rem',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+
+      <h2 style={{ textAlign: 'right', marginBottom: '2rem' }}>Total: ₹{calculateTotal()}</h2>
+
+      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
+        <button
+          onClick={() => setShowModal(true)}
+          style={{
+            padding: '0.75rem 2rem',
+            backgroundColor: 'green',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '16px',
+          }}
+        >
+          Send Order
+        </button>
+        <button
+          onClick={() => navigate('/shop')}
+          style={{
+            padding: '0.75rem 2rem',
+            backgroundColor: 'blue',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '16px',
+          }}
+        >
+          View More
+        </button>
+      </div>
+
+      {/* Modal for User Details */}
+      {showModal && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+          }}
+        >
+          <div
+            style={{
+              background: 'white',
+              padding: '2rem',
+              borderRadius: '8px',
+              width: '400px',
+              textAlign: 'center',
+            }}
+          >
+            <h2>User Details</h2>
+            <div style={{ marginBottom: '1rem' }}>
+              <label>Name:</label>
+              <input
+                type="text"
+                name="name"
+                value={userDetails.name}
+                onChange={handleInputChange}
+                style={{ marginLeft: '1rem', width: '100%' }}
+              />
+            </div>
+            <div style={{ marginBottom: '1rem' }}>
+              <label>Mobile:</label>
+              <input
+                type="text"
+                name="mobile"
+                value={userDetails.mobile}
+                onChange={handleInputChange}
+                style={{ marginLeft: '1rem', width: '100%' }}
+              />
+            </div>
+            <div style={{ marginBottom: '1rem' }}>
+              <label>Address:</label>
+              <textarea
+                name="address"
+                value={userDetails.address}
+                onChange={handleInputChange}
+                style={{ marginLeft: '1rem', width: '100%' }}
+              ></textarea>
+            </div>
+            <div style={{ marginBottom: '1rem' }}>
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={userDetails.email}
+                onChange={handleInputChange}
+                style={{ marginLeft: '1rem', width: '100%' }}
+              />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
+              <button
+                onClick={handleSendOrder}
+                style={{
+                  padding: '0.75rem 2rem',
+                  backgroundColor: 'green',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                }}
+              >
+                Confirm
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                style={{
+                  padding: '0.75rem 2rem',
+                  backgroundColor: 'red',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Cart;
+
+        [Content End]
+
+    Contact.js
+        [Content Start]
+import React from 'react';
+import { FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+
+const Contact = () => {
+  const handleViewOnMaps = () => {
+    window.open('https://www.google.com/maps/place/Fly+high+mens+spot/@12.5898262,78.5084235,17z', '_blank');
+  };
+
+  return (
+    <div className="contact-container">
+      <h1 className="contact-header">Contact Us</h1>
+      <div className="contact-details">
+        <div className="contact-item">
+          <FaUser className="icon" />
+          <div>
+            <strong>Owner:</strong> Murali Raj
+          </div>
+        </div>
+        <div className="contact-item">
+          <FaEnvelope className="icon" />
+          <div>
+            <strong>Email:</strong>{' '}
+            <a href="mailto:support@flyhigh.com">support@flyhigh.com</a>
+          </div>
+        </div>
+        <div className="contact-item">
+          <FaPhone className="icon" />
+          <div>
+            <strong>Phone:</strong>{' '}
+            <a href="tel:+919626564903">+91 9626564903</a>
+          </div>
+        </div>
+        <div className="contact-item">
+          <FaMapMarkerAlt className="icon" />
+          <div>
+            <strong>Address:</strong>
+            <p>
+              Post Office Upstairs,
+              <br />
+              Govt. Hospital Road,
+              <br />
+              Yerkodi, Natrampalli,
+              <br />
+              Tirupattur, DT 635 852.
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr className="divider" />
+      <h2 className="contact-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        Our Location
+        <button 
+          onClick={handleViewOnMaps}
+          style={{
+            padding: '0.5rem 1rem',
+            backgroundColor: '#28a745',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '14px',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+            transition: 'background-color 0.3s ease, transform 0.2s ease',
+            textTransform: 'uppercase',
+            marginLeft: 'auto'
+          }}
+          onMouseEnter={(e) => e.target.style.backgroundColor = '#218838'}
+          onMouseLeave={(e) => e.target.style.backgroundColor = '#28a745'}
+          onMouseDown={(e) => e.target.style.transform = 'scale(0.95)'}
+          onMouseUp={(e) => e.target.style.transform = 'scale(1)'}
+        >
+          View on Maps
+        </button>
+      </h2>
+      <div className="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.8521191209073!2d78.50842349999999!3d12.5898262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3badad9991a835ff%3A0xc2faeac88faa500b!2sFly%20high%20mens%20spot!5e0!3m2!1sen!2sin!4v1673575729430!5m2!1sen!2sin"
+          title="Fly High Men's Spot Location"
+          allowFullScreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  );
+};
+
+export default Contact;
+
+        [Content End]
+
+    Home.js
+        [Content Start]
+import React from 'react';
+import HeroBanner from '../components/HeroBanner'; // Import Hero Banner
+import ProductCard from '../components/ProductCard';
+import products from '../data/products';
+
+const Home = () => {
+  return (
+    <div>
+      <HeroBanner />
+      <h2 style={{ textAlign: 'center', marginTop: '2rem' }}>Featured Products</h2>
+      <div className="products-grid">
+        {products.slice(0, 4).map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Home;
+
+        [Content End]
+
+    ProductDetails.css
+        [Content Start]
+/* Product Details Layout */
+.product-details {
+  display: flex;
+  gap: 2rem; /* Space between the image and the text */
+  align-items: flex-start; /* Align items to the top by default */
+  padding: 2rem;
+}
+
+/* Image Styling */
+.product-details .product-image {
+  width: 400px; /* Default width for desktop */
+  object-fit: cover; /* Ensure proportional scaling */
+}
+
+/* Text Content Styling */
+.product-details .product-info {
+  flex: 1; /* Allow the text section to grow */
+}
+
+/* Responsive Styling for Mobile View */
+@media (max-width: 768px) {
+  .product-details {
+      display: flex;
+      flex-direction: column; /* Stack the image and text vertically */
+      align-items: center; /* Center-align all content */
+      text-align: center; /* Center-align the text */
+      width: 100%; /* Ensure the container spans full width */
+      margin: 0 auto; /* Center the layout horizontally */
+  }
+
+  .product-details .product-image {
+      width: 100%; /* Image occupies full width */
+      max-width: 300px; /* Restrict maximum size for mobile */
+      margin-bottom: 1rem; /* Add spacing below the image */
+      display: block; /* Ensure block display for proper stacking */
+  }
+
+  .product-details .product-info {
+      text-align: center; /* Center-align text */
+      width: 100%; /* Ensure text spans the full width */
+  }
+}
+
+/* Image Gallery */
+.image-gallery img { 
+  width: 100%; /* Make gallery images responsive */
+  max-width: 400px; /* Set a maximum width */
+  border: 1px solid #ddd;
+}
+
+.thumbnail img {
+  width: 75px;
+  height: 75px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.thumbnail img.selected {
+  border: 2px solid black;
+}
+
+/* Add to Bag Button */
+.add-to-bag {
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Responsive Button Adjustments */
+@media (max-width: 768px) {
+  .add-to-bag {
+      width: 100%; /* Make the button full width on mobile */
+      max-width: 300px; /* Restrict the maximum size */
+      margin: 1rem auto; /* Center the button */
+  }
+}
+
+/* Product Grid Layout (if needed) */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Limit to 4 items per row */
+  gap: 1rem; /* Space between items */
+  padding: 2rem; /* Padding around the grid */
+}
+
+/* Responsive Adjustments for Grid */
+@media (max-width: 1024px) {
+  .products-grid {
+      grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+      grid-template-columns: 1fr; /* 1 item per row */
+  }
+}
+
+/* Product Card Styling */
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.product-card .product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  margin: 1rem 0 0.5rem;
+}
+
+.product-card .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0078d7;
+}
+
+.product-card .original-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-left: 0.5rem;
+}
+
+.product-card .discount {
+  color: green;
+  font-weight: bold;
+}
+
+/* Footer Styling */
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #333;
+  color: white;
+  position: relative;
+  width: 100%;
+}
+
+        [Content End]
+
+    ProductDetails.js
+        [Content Start]
+import React, { useState, useContext } from 'react';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import products from '../data/products';
+import { CartContext } from '../contexts/CartContext';
+import { ToastContainer, toast } from 'react-toastify'; // Import Toast components
+import 'react-toastify/dist/ReactToastify.css'; // Import Toast styles
+
+const ProductDetails = () => {
+  const { id } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const queryParams = new URLSearchParams(location.search);
+  const initialColor = queryParams.get('color'); // Get color from query parameters
+
+  // Find the product by ID
+  const product = products.find((item) => item.id === parseInt(id));
+  const [selectedColor, setSelectedColor] = useState(initialColor || product.colors[0]); // Default to query color or first color
+  const [selectedSize, setSelectedSize] = useState(''); // Default size
+  const { addToCart } = useContext(CartContext); // Access CartContext
+
+  if (!product) {
+    return <h2>Product not found</h2>;
+  }
+
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      toast.error('Please select a size before adding to cart.', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return;
+    }
+
+    // Cart item details
+    const cartItem = {
+      id: product.id,
+      name: product.name,
+      offerPrice: product.offerPrice,
+      size: selectedSize,
+      color: selectedColor,
+      image: product.image,
+      quantity: 1,
+    };
+
+    addToCart(cartItem);
+
+    toast.success('Product added to cart successfully!', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+  };
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        padding: '2rem',
+        gap: '2rem',
+      }}
+    >
+      {/* Toast Container */}
+      <ToastContainer />
+
+      {/* Left Section: Product Image */}
+      <div style={{ flex: 1, textAlign: 'center' }}>
+        <img
+          src={product.image[selectedColor]}
+          alt={product.name}
+          style={{
+            width: '100%',
+            maxWidth: '400px',
+            height: 'auto',
+            borderRadius: '8px',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+          }}
+        />
+      </div>
+
+      {/* Right Section: Product Details */}
+      <div style={{ flex: 2 }}>
+        <h2>{product.name}</h2>
+        <p
+          style={{
+            fontSize: '18px',
+            fontWeight: 'bold',
+            margin: '10px 0',
+            color: '#555',
+          }}
+        >
+          Offer Price: ₹{product.offerPrice}{' '}
+          <span style={{ textDecoration: 'line-through', color: '#999' }}>
+            ₹{product.price}
+          </span>
+        </p>
+        <p style={{ marginBottom: '20px', color: '#777' }}>{product.description}</p>
+
+        {/* Color Selection */}
+        <div style={{ marginBottom: '20px' }}>
+          <h4>Select Color:</h4>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            {product.colors.map((color) => (
+              <button
+                key={color}
+                onClick={() => setSelectedColor(color)}
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  backgroundColor: color,
+                  border: color === selectedColor ? '3px solid #000' : '1px solid #ddd',
+                  borderRadius: '50%',
+                  cursor: 'pointer',
+                }}
+              ></button>
+            ))}
+          </div>
+        </div>
+
+        {/* Size Selection */}
+        <div style={{ marginBottom: '20px' }}>
+          <h4>Select Size:</h4>
+          {['S', 'M', 'L', 'XL'].map((size) => (
+            <button
+              key={size}
+              onClick={() => setSelectedSize(size)}
+              style={{
+                margin: '5px',
+                padding: '10px',
+                backgroundColor: selectedSize === size ? 'blue' : '#ddd',
+                color: selectedSize === size ? 'white' : '#000',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+              }}
+            >
+              {size}
+            </button>
+          ))}
+        </div>
+
+        {/* Buttons */}
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button
+            onClick={handleAddToCart}
+            style={{
+              padding: '12px 24px',
+              backgroundColor: 'green',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '16px',
+            }}
+          >
+            Add to Cart
+          </button>
+          <button
+            onClick={() => navigate('/cart')}
+            style={{
+              padding: '12px 24px',
+              backgroundColor: 'blue',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '16px',
+            }}
+          >
+            View Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductDetails;
+
+        [Content End]
+
+    Shop.js
+        [Content Start]
+import React from 'react';
+import ProductCard from '../components/ProductCard';
+import products from '../data/products';
+
+const Shop = () => {
+  return (
+    <div>
+      <h2 style={{ textAlign: 'center' }}>Shop All Products</h2>
+      <div className="products-grid">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Shop;
+
+        [Content End]
+
+

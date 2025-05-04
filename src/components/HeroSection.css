@@ -1,0 +1,31 @@
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background-image: url('https://via.placeholder.com/1200x400');
+    background-size: cover;
+    color: white;
+    text-align: center;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+  }
+  
+  .hero-section p {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .hero-section button {
+    padding: 0.75rem 1.5rem;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
